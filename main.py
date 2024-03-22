@@ -35,6 +35,22 @@ def go_right():
     time.sleep(2)
     pydirectinput.keyUp('d')
 
+def slot_1():
+    pydirectinput.keyDown('1')
+    time.sleep(0.1)
+    pydirectinput.keyUp('1')
+
+def jump():
+    pydirectinput.keyDown('space')
+    time.sleep(0.1)
+    pydirectinput.keyUp('space')
+
+def destroy():
+    pydirectinput.click(button='left')
+    
+
+def place():
+    pydirectinput.click(button='right')
 
 with sr.Microphone() as source:
     print("Listening...")
@@ -52,12 +68,17 @@ try:
         go_left()
     elif "right" in command:
         go_right()
+    elif "slot one" in command:
+        slot_1()
+    elif "jump" in command:
+        jump()
+    elif "break" in command:
+        destroy()
+    elif "put" in command:
+        place()
     # Add more commands and associated functions as needed
 
 except sr.UnknownValueError:
     print("Sorry, I didn't understand that.")
 except sr.RequestError:
     print("Sorry, I couldn't request results. Please check your internet connection.")
-
-
-
