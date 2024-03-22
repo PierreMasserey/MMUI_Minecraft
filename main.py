@@ -10,11 +10,6 @@ recognizer = sr.Recognizer()
 
 
 
-
-
-
-
-
 def go_forward():
     pydirectinput.keyDown('w')
     time.sleep(2)
@@ -45,10 +40,16 @@ def jump():
     time.sleep(0.1)
     pydirectinput.keyUp('space')
 
+def jump_forward():
+    pydirectinput.keyDown('w')
+    pydirectinput.keyDown('space')
+    time.sleep(10)
+    pydirectinput.keyUp('w')
+    pydirectinput.keyUp('space')
+
 def destroy():
     pydirectinput.click(button='left')
     
-
 def place():
     pydirectinput.click(button='right')
 
@@ -67,7 +68,7 @@ try:
     elif "left" in command:
         go_left()
     elif "right" in command:
-        go_right()
+        go_right()  
     elif "slot one" in command:
         slot_1()
     elif "jump" in command:
@@ -76,6 +77,8 @@ try:
         destroy()
     elif "put" in command:
         place()
+    elif "go up" in command:
+        jump_forward()
     # Add more commands and associated functions as needed
 
 except sr.UnknownValueError:
