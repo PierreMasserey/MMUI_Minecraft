@@ -1,57 +1,63 @@
-import pydirectinput
 import pyautogui
 import speech_recognition as sr
 import time
 
 
-time.sleep(2)#so u can switch to your game
+time.sleep(2)  # Pour que vous puissiez basculer vers votre jeu
 recognizer = sr.Recognizer()
 
 
-
-
 def go_forward():
-    pydirectinput.keyDown('w')
+    pyautogui.keyDown('w')
     time.sleep(2)
-    pydirectinput.keyUp('w')
+    pyautogui.keyUp('w')
+
 
 def go_backward():
-    pydirectinput.keyDown('s')
+    pyautogui.keyDown('s')
     time.sleep(2)
-    pydirectinput.keyUp('s')
+    pyautogui.keyUp('s')
+
 
 def go_left():
-    pydirectinput.keyDown('a')
+    pyautogui.keyDown('a')
     time.sleep(2)
-    pydirectinput.keyUp('a')
+    pyautogui.keyUp('a')
+
 
 def go_right():
-    pydirectinput.keyDown('d')
+    pyautogui.keyDown('d')
     time.sleep(2)
-    pydirectinput.keyUp('d')
+    pyautogui.keyUp('d')
+
 
 def slot_1():
-    pydirectinput.keyDown('1')
+    pyautogui.keyDown('1')
     time.sleep(0.1)
-    pydirectinput.keyUp('1')
+    pyautogui.keyUp('1')
+
 
 def jump():
-    pydirectinput.keyDown('space')
+    pyautogui.keyDown('space')
     time.sleep(0.1)
-    pydirectinput.keyUp('space')
+    pyautogui.keyUp('space')
+
 
 def jump_forward():
-    pydirectinput.keyDown('w')
-    pydirectinput.keyDown('space')
+    pyautogui.keyDown('w')
+    pyautogui.keyDown('space')
     time.sleep(10)
-    pydirectinput.keyUp('w')
-    pydirectinput.keyUp('space')
+    pyautogui.keyUp('w')
+    pyautogui.keyUp('space')
+
 
 def destroy():
-    pydirectinput.click(button='left')
-    
+    pyautogui.click(button='left')
+
+
 def place():
-    pydirectinput.click(button='right')
+    pyautogui.click(button='right')
+
 
 with sr.Microphone() as source:
     print("Listening...")
@@ -60,7 +66,7 @@ with sr.Microphone() as source:
 try:
     command = recognizer.recognize_google(audio)
     print("You said:", command)
-    
+
     if "forward" in command:
         go_forward()
     elif "backward" in command:
@@ -68,7 +74,7 @@ try:
     elif "left" in command:
         go_left()
     elif "right" in command:
-        go_right()  
+        go_right()
     elif "slot one" in command:
         slot_1()
     elif "jump" in command:
@@ -79,7 +85,7 @@ try:
         place()
     elif "go up" in command:
         jump_forward()
-    # Add more commands and associated functions as needed
+    # Ajoutez d'autres commandes et fonctions associées au besoin
 
 except sr.UnknownValueError:
     print("Sorry, I didn't understand that.")
