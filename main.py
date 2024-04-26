@@ -6,49 +6,41 @@ import time
 time.sleep(2)  # Pour que vous puissiez basculer vers votre jeu
 recognizer = sr.Recognizer()
 
+last_input = []
+def stop(input):
+    pyautogui.keyUp(input)
+    last_input.clear()
 
 def go_forward():
     pyautogui.keyDown('w')
-    time.sleep(2)
-    pyautogui.keyUp('w')
+    last_input.append('w')
 
 
 def go_backward():
     pyautogui.keyDown('s')
-    time.sleep(2)
-    pyautogui.keyUp('s')
-
+    last_input.append('s')
 
 def go_left():
     pyautogui.keyDown('a')
-    time.sleep(2)
-    pyautogui.keyUp('a')
+    last_input.append('a')
 
 
 def go_right():
     pyautogui.keyDown('d')
-    time.sleep(2)
-    pyautogui.keyUp('d')
+    last_input.append('d')
 
 
 def slot_1():
-    pyautogui.keyDown('1')
-    time.sleep(0.1)
-    pyautogui.keyUp('1')
-
+    pyautogui.press('1')
 
 def jump():
-    pyautogui.keyDown('space')
-    time.sleep(0.1)
-    pyautogui.keyUp('space')
+    pyautogui.press('space')
 
 
 def jump_forward():
-    pyautogui.keyDown('w')
-    pyautogui.keyDown('space')
-    time.sleep(10)
-    pyautogui.keyUp('w')
-    pyautogui.keyUp('space')
+    pyautogui.hotkey('w', 'space')
+    last_input.append('w')
+    last_input.append('space')
 
 
 def destroy():
@@ -62,11 +54,12 @@ def place():
 with sr.Microphone() as source:
     print("Listening...")
     audio = recognizer.listen(source)
+    #print(audio)
 
 try:
     command = recognizer.recognize_google(audio)
     print("You said:", command)
-
+    print(type(command))
     if "forward" in command:
         go_forward()
     elif "backward" in command:
