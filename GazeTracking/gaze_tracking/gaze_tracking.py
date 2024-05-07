@@ -119,6 +119,7 @@ class GazeTracking(object):
         
         #Christian: right 0.55, left 0.65, top 0.5, bot 0.75
         #Jiaxin: right 0.55, left 0.65, top 0.6, bot 0.77
+        #Pierre: right 0.55, left 0.65, top 0.5, bot 0.99
 
     def is_center(self):
         """Returns true if the user is looking to the center"""
