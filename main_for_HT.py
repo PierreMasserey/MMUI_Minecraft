@@ -14,9 +14,17 @@ last_input = []
 recognizer = sr.Recognizer()
 
 def stop():
-    for i in last_input:
-        pyautogui.keyUp(i)
-    last_input.clear()
+    # Relâcher toutes les touches
+    pyautogui.keyUp('w')
+    pyautogui.keyUp('a')
+    pyautogui.keyUp('s')
+    pyautogui.keyUp('d')
+    pyautogui.keyUp('3')
+    pyautogui.keyUp('space')
+    
+    # Relâcher tous les boutons de la souris
+    pyautogui.mouseUp(button='left')
+    pyautogui.mouseUp(button='right')
 
 def go_forward():
     pyautogui.keyDown('w')
@@ -34,8 +42,8 @@ def go_right():
     pyautogui.keyDown('d')
     last_input.append('d')
 
-def slot_1():
-    pyautogui.keyDown('1')
+def slot_3():
+    pyautogui.keyDown('3')
 
 def jump():
     pyautogui.keyDown('space')
@@ -47,10 +55,9 @@ def jump_forward():
     last_input.append('space')
 
 def destroy():
-    pyautogui.click(button='left')
-
+    pyautogui.mouseDown(button='left')
 def place():
-    pyautogui.click(button='right')
+    pyautogui.mouseDown(button='right')
 
 def detect_head_movements():
     print("Head tracking thread started")
@@ -72,14 +79,14 @@ def detect_head_movements():
             
             # Déplacer la souris si la tête dépasse le seuil
             if head_center_x < THRESHOLD:
-                pyautogui.move(-10, 0)  # Déplacer la souris vers la gauche
+                pyautogui.move(-40, 0)  # Déplacer la souris vers la gauche
             elif head_center_x > 1 - THRESHOLD:
-                pyautogui.move(10, 0)  # Déplacer la souris vers la droite
+                pyautogui.move(40, 0)  # Déplacer la souris vers la droite
     
             if head_center_y < THRESHOLD:
-                pyautogui.move(0, -10)  # Déplacer la souris vers le haut
+                pyautogui.move(0, -40)  # Déplacer la souris vers le haut
             elif head_center_y > 0.75 - THRESHOLD:
-                pyautogui.move(0, 10)  # Déplacer la souris vers le bas
+                pyautogui.move(0, 40)  # Déplacer la souris vers le bas
     
     cv2.imshow('Eye Controlled Mouse', frame)
     cv2.waitKey(1)
@@ -119,8 +126,8 @@ def run_microphone():
             go_left()
         elif "right" in command:
             go_right()
-        elif "slot one" in command:
-            slot_1()
+        elif "slot three" in command:
+            slot_3()
         elif "jump" in command:
             jump()
         elif "break" in command:

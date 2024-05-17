@@ -4,5 +4,13 @@ evaluation :
 
 With mouse + keyboard
 
-Jiaxin : 2:54
-Pierre : 0:36 
+Jiaxin : 1:08
+Pierre : 0:19
+
+
+
+with head tracking : 
+
+Pierre : 4:02
+
+ 
