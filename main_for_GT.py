@@ -1,12 +1,15 @@
 import pyautogui
 import speech_recognition as sr
 import threading
-from GazeTracking import example as gt
+from GazeTracking.gaze_tracking.gaze_tracking import GazeTracking
+import cv2
 
 pyautogui.FAILSAFE = False
 
 last_input = []
 recognizer = sr.Recognizer()
+gaze = GazeTracking()
+webcam = cv2.VideoCapture(0)
 
 def stop():
     # Relâcher toutes les touches
@@ -55,17 +58,26 @@ def place():
     pyautogui.mouseDown(button='right')
 
 def detect_gaze_movements():
+
+
     while True:
-        if gt.gaze.is_right() :
+            # We get a new frame from the webcam
+        _, frame = webcam.read()
+
+        # We send this frame to GazeTracking to analyze it
+        gaze.refresh(frame)
+
+        frame = gaze.annotated_frame()
+        if gaze.is_right() :
             pyautogui.move(40, 0)
         
-        elif gt.gaze.is_left() : 
+        elif gaze.is_left() : 
             pyautogui.move(-40, 0)
         
-        elif gt.gaze.is_top() :
+        elif gaze.is_top() :
             pyautogui.move(0, -40)
         
-        elif gt.gaze.is_bottom() :
+        elif gaze.is_bottom() :
             pyautogui.move(0, 40)
 
 
