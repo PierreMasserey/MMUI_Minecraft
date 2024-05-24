@@ -4,15 +4,31 @@ evaluation :
 
 With mouse + keyboard
 
-Jiaxin : 1:08
-Pierre : 0:19
-Simon : 0:31
+Jiaxin : 1:08 ;
+Pierre : 0:19 ;
+Simon : 0:31 ;
 
 
 
 with head tracking : 
 
-Pierre : 4:02
-Simon : 4:52
+Pierre : 4:02 ;  
+Simon : 4:52 ;
 
  
+
+
+with eye gazing :
+
+
+
+
+
+Distribution of order :
+
+
+started with head tracking : Pierre, Simon
+
+started with eye gazing : 
+
+
