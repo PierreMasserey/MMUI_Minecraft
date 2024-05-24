@@ -42,6 +42,10 @@ def go_right():
     pyautogui.keyDown('d')
     last_input.append('d')
 
+def slot_1():
+    pyautogui.keyDown('1')
+def slot_2():
+    pyautogui.keyDown('2')
 def slot_3():
     pyautogui.keyDown('3')
 
@@ -53,6 +57,18 @@ def jump_forward():
     pyautogui.keyDown('space')
     last_input.append('w')
     last_input.append('space')
+
+def go_ten_step():
+    for _ in range(20):
+        pyautogui.keyDown('w')
+        last_input.append('w')
+        pyautogui.keyUp('w')
+        time.sleep(0.1)
+
+def shift():
+    pyautogui.keyDown('shift')
+    last_input.append('space')
+
 
 def destroy():
     pyautogui.mouseDown(button='left')
@@ -120,13 +136,19 @@ def run_microphone():
         print(f"Command received: {command}")
         if "forward" in command:
             go_forward()
+        elif "go" in command:
+            go_ten_step()
         elif "backward" in command:  
             go_backward()
         elif "left" in command:
             go_left()
         elif "right" in command:
             go_right()
-        elif "slot three" in command:
+        elif "use first" in command:
+            slot_1()
+        elif "use second" in command:
+            slot_2()
+        elif "use third" in command:
             slot_3()
         elif "jump" in command:
             jump()
@@ -136,6 +158,8 @@ def run_microphone():
             place()
         elif "up" in command:
             jump_forward()
+        elif "shift" in command:
+            shift()
         elif "stop" in command:
             stop()
         else:
