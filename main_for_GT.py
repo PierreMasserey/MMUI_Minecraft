@@ -93,7 +93,7 @@ def take_command():
             command = recognizer.recognize_google(voice)
             command = command.lower()
             if 'command' in command:
-                command = command.replace('command', '')
+                command = command.replace('ok', '')
                 print(f"Recognized command: {command}")
             return command
         except sr.UnknownValueError:
