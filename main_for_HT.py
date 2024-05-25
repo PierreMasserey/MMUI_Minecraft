@@ -72,6 +72,12 @@ def shift():
 
 def destroy():
     pyautogui.mouseDown(button='left')
+
+def hit():
+    pyautogui.mouseDown(button='left')
+    time.sleep(4)
+    pyautogui.mouseUp(button='left')
+
 def place():
     pyautogui.mouseDown(button='right')
 
@@ -154,7 +160,11 @@ def run_microphone():
             jump()
         elif "break" in command:
             destroy()
+        elif "hit" in command:
+            hit()
         elif "put" in command:
+            place()
+        elif "place" in command:
             place()
         elif "up" in command:
             jump_forward()

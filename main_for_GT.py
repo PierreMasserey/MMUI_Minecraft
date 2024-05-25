@@ -40,6 +40,10 @@ def go_right():
     pyautogui.keyDown('d')
     last_input.append('d')
 
+def slot_1():
+    pyautogui.keyDown('1')
+def slot_2():
+    pyautogui.keyDown('2')
 def slot_3():
     pyautogui.keyDown('3')
 
@@ -52,8 +56,26 @@ def jump_forward():
     last_input.append('w')
     last_input.append('space')
 
+def go_ten_step():
+    for _ in range(20):
+        pyautogui.keyDown('w')
+        last_input.append('w')
+        pyautogui.keyUp('w')
+        time.sleep(0.1)
+
+def shift():
+    pyautogui.keyDown('shift')
+    last_input.append('space')
+
+
 def destroy():
     pyautogui.mouseDown(button='left')
+
+def hit():
+    pyautogui.mouseDown(button='left')
+    time.sleep(4)
+    pyautogui.mouseUp(button='left')
+
 def place():
     pyautogui.mouseDown(button='right')
 
@@ -71,13 +93,13 @@ def detect_gaze_movements():
         if gaze.is_right() :
             pyautogui.move(40, 0)
         
-        elif gaze.is_left() : 
+        if gaze.is_left() : 
             pyautogui.move(-40, 0)
         
-        elif gaze.is_top() :
+        if gaze.is_top() :
             pyautogui.move(0, -40)
         
-        elif gaze.is_bottom() :
+        if gaze.is_bottom() :
             pyautogui.move(0, 40)
 
 
@@ -109,22 +131,34 @@ def run_microphone():
         print(f"Command received: {command}")
         if "forward" in command:
             go_forward()
+        elif "go" in command:
+            go_ten_step()
         elif "backward" in command:  
             go_backward()
         elif "left" in command:
             go_left()
         elif "right" in command:
             go_right()
-        elif "slot three" in command:
+        elif "use first" in command:
+            slot_1()
+        elif "use second" in command:
+            slot_2()
+        elif "use third" in command:
             slot_3()
         elif "jump" in command:
             jump()
         elif "break" in command:
             destroy()
+        elif "hit" in command:
+            hit()
         elif "put" in command:
+            place()
+        elif "place" in command:
             place()
         elif "up" in command:
             jump_forward()
+        elif "shift" in command:
+            shift()
         elif "stop" in command:
             stop()
         else:
