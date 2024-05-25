@@ -19,6 +19,9 @@ def stop():
     pyautogui.keyUp('a')
     pyautogui.keyUp('s')
     pyautogui.keyUp('d')
+    pyautogui.keyUp('shift')
+    pyautogui.keyUp('1')
+    pyautogui.keyUp('2')
     pyautogui.keyUp('3')
     pyautogui.keyUp('space')
     
